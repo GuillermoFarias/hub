@@ -1,5 +1,5 @@
-import { COMMANDS, USHRT_MAX } from 'App/Clock/Constants';
-import Support from 'App/Clock/Support';
+import { COMMANDS, USHRT_MAX } from '../../Constants';
+import Support from '../../Support';
 import dgram from 'node:dgram';
 import net from 'node:net';
 

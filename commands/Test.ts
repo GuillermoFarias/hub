@@ -31,36 +31,36 @@ export default class Test extends BaseCommand {
 
   public async run() {
 
-    // const { default: zkService } = (await import('../app/Clock/Service'));
+    const { default: zkService } = (await import('../app/Clock/Service'));
 
-    // const service = new zkService('192.168.2.251', 4370, 5000, 4370);
-    // console.log(service.getInfo());
+    const service = new zkService('192.168.2.251', 4370, 5000, 4370);
+    console.log(service.getInfo());
 
-    let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
-    try {
-      // Create socket to machine
-      await zkInstance.createSocket()
-
-
-      // Get general info like logCapacity, user counts, logs count
-      // It's really useful to check the status of device
-      console.log(await zkInstance.getInfo())
-    } catch (e) {
-      console.log(e)
-      if (e.code === 'EADDRINUSE') {
-      }
-    }
+    // let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
+    // try {
+    //   // Create socket to machine
+    //   await zkInstance.createSocket()
 
 
-    // Get users in machine
-    const users = await zkInstance.getUsers()
-    console.log(users)
+    //   // Get general info like logCapacity, user counts, logs count
+    //   // It's really useful to check the status of device
+    //   console.log(await zkInstance.getInfo())
+    // } catch (e) {
+    //   console.log(e)
+    //   if (e.code === 'EADDRINUSE') {
+    //   }
+    // }
 
 
-    // Get all logs in the machine
-    // Currently, there is no filter to take data, it just takes all !!
-    const logs = await zkInstance.getAttendances()
-    console.log(logs)
+    // // Get users in machine
+    // const users = await zkInstance.getUsers()
+    // console.log(users)
+
+
+    // // Get all logs in the machine
+    // // Currently, there is no filter to take data, it just takes all !!
+    // const logs = await zkInstance.getAttendances()
+    // console.log(logs)
 
 
     // const attendances = await zkInstance.getAttendances((percent, total) => {

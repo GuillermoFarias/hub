@@ -1,4 +1,4 @@
-import { COMMANDS, MAX_CHUNK, REQUEST_DATA, USHRT_MAX } from "App/Clock/Constants";
+import { COMMANDS, MAX_CHUNK, REQUEST_DATA, USHRT_MAX } from "../../Constants";
 import Protocol from "./Protocol";
 import net from 'node:net';
 
