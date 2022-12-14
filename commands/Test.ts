@@ -49,7 +49,6 @@ export default class Test extends BaseCommand {
       console.log(e);
     }
 
-    return;
 
     let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
     try {

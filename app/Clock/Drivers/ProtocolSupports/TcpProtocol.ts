@@ -429,7 +429,8 @@ export default class TcpProtocol extends Protocol {
         // Free Buffer Data to request Data
         if (this.socket) {
             try {
-                await this.executeCmd(COMMANDS.CMD_FREE_DATA, '')
+                const data = await this.executeCmd(COMMANDS.CMD_FREE_DATA, '')
+                console.log('data-- ', data)
             } catch (err) {
                 return Promise.reject(err)
             }
@@ -451,7 +452,6 @@ export default class TcpProtocol extends Protocol {
                 return Promise.reject(err)
             }
         }
-
 
         const USER_PACKET_SIZE = 72
 
