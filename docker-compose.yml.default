@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  #PHP Service
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: example-app
+    tty: true
+    working_dir: /var/www/html
+    ports:
+      - 8009:80
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./docker/apache/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+
+  #MySQL Service
+  db:
+    platform: linux/x86_64
+    image: mysql:latest
+    container_name: example-db
+    tty: true
+    ports:
+      - 33066:3306
+    environment:
+      MYSQL_DATABASE: example
+      MYSQL_ROOT_PASSWORD: example
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  db:
+    driver: local
