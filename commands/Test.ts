@@ -35,7 +35,7 @@ export default class Test extends BaseCommand {
 
     try {
       const service = new zkService('192.168.2.251', 4370, 5000, 4370);
-      service.createSocket();
+      await service.createSocket();
       console.log(await service.getInfo());
       service.getAttendances((percent, total) => {
         console.log('percent', percent)
