@@ -78,7 +78,7 @@ export default class Service {
         }
     }
 
-    async createSocket(cbErr, cbClose) {
+    async createSocket(cbErr = () => { }, cbClose = () => { }) {
         try {
             if (!this.zklibTcp.getSocket()) {
                 try {
