@@ -429,8 +429,7 @@ export default class TcpProtocol extends Protocol {
         // Free Buffer Data to request Data
         if (this.socket) {
             try {
-                const data = await this.executeCmd(COMMANDS.CMD_FREE_DATA, '')
-                console.log('data-- ', data)
+                await this.executeCmd(COMMANDS.CMD_FREE_DATA, '')
             } catch (err) {
                 return Promise.reject(err)
             }
@@ -439,8 +438,8 @@ export default class TcpProtocol extends Protocol {
         let data: any = null;
         try {
             data = await this.readWithBuffer(REQUEST_DATA.GET_USERS)
-
         } catch (err) {
+            console.log('error -- ', err);
             return Promise.reject(err)
         }
 

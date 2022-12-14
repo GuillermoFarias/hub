@@ -31,23 +31,23 @@ export default class Test extends BaseCommand {
 
   public async run() {
 
-    const { default: zkService } = (await import('../app/Clock/Service'));
+    // const { default: zkService } = (await import('../app/Clock/Service'));
 
-    try {
-      const service = new zkService('192.168.2.251', 4370, 5000, 4370);
-      await service.createSocket();
-      console.log(await service.getInfo());
-      service.getAttendances((percent, total) => {
-        console.log('percent', percent)
-        console.log('total', total)
-      });
-      service.getRealTimeLogs((data) => {
-        console.log(data)
-      });
-      console.log(await service.getTime());
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   const service = new zkService('192.168.2.251', 4370, 5000, 4370);
+    //   await service.createSocket();
+    //   console.log(await service.getInfo());
+    //   service.getAttendances((percent, total) => {
+    //     console.log('percent', percent)
+    //     console.log('total', total)
+    //   });
+    //   service.getRealTimeLogs((data) => {
+    //     console.log(data)
+    //   });
+    //   console.log(await service.getTime());
+    // } catch (e) {
+    //   console.log(e);
+    // }
 
 
     let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
@@ -77,11 +77,11 @@ export default class Test extends BaseCommand {
     // console.log(logs)
 
 
-    const attendances = await zkInstance.getAttendances((percent, total) => {
-      // this callbacks take params is the percent of data downloaded and total data need to download 
-      console.log('percent', percent)
-      console.log('total', total)
-    })
+    // const attendances = await zkInstance.getAttendances((percent, total) => {
+    //   // this callbacks take params is the percent of data downloaded and total data need to download 
+    //   console.log('percent', percent)
+    //   console.log('total', total)
+    // })
 
     // YOu can also read realtime log by getRealTimelogs function
 
