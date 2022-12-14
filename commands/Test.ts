@@ -31,25 +31,29 @@ export default class Test extends BaseCommand {
 
   public async run() {
 
-    const { default: zkService } = (await import('../app/Clock/Service'));
+    // const { default: zkService } = (await import('../app/Clock/Service'));
 
-    const service = new zkService('192.168.2.251', 4370, 5000, 4370);
-    console.log(service.getInfo());
-
-    // let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
     // try {
-    //   // Create socket to machine
-    //   await zkInstance.createSocket()
-
-
-    //   // Get general info like logCapacity, user counts, logs count
-    //   // It's really useful to check the status of device
-    //   console.log(await zkInstance.getInfo())
+    //   const service = new zkService('192.168.2.251', 4370, 5000, 4370);
+    //   console.log(service.getInfo());
     // } catch (e) {
-    //   console.log(e)
-    //   if (e.code === 'EADDRINUSE') {
-    //   }
+    //   console.log(e);
     // }
+
+    let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
+    try {
+      // Create socket to machine
+      await zkInstance.createSocket()
+
+
+      // Get general info like logCapacity, user counts, logs count
+      // It's really useful to check the status of device
+      console.log(await zkInstance.getInfo())
+    } catch (e) {
+      console.log(e)
+      if (e.code === 'EADDRINUSE') {
+      }
+    }
 
 
     // // Get users in machine
@@ -63,18 +67,20 @@ export default class Test extends BaseCommand {
     // console.log(logs)
 
 
-    // const attendances = await zkInstance.getAttendances((percent, total) => {
-    //   // this callbacks take params is the percent of data downloaded and total data need to download 
-    // })
+    const attendances = await zkInstance.getAttendances((percent, total) => {
+      // this callbacks take params is the percent of data downloaded and total data need to download 
+      console.log('percent', percent)
+      console.log('total', total)
+    })
 
     // YOu can also read realtime log by getRealTimelogs function
 
     // console.log('check users', users)
 
-    // zkInstance.getRealTimeLogs((data) => {
-    //   // do something when some checkin 
-    //   console.log(data)
-    // })
+    zkInstance.getRealTimeLogs((data) => {
+      // do something when some checkin
+      console.log(data)
+    })
 
     // // log.log('test');
 

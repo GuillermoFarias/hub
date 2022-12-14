@@ -193,7 +193,7 @@ export default class Service {
     }
 
 
-    async getInfo() {
+    public async getInfo() {
         return await this.functionWrapper(
             () => this.zklibTcp.getInfo(),
             () => this.zklibUdp.getInfo()
