@@ -31,14 +31,24 @@ export default class Test extends BaseCommand {
 
   public async run() {
 
-    // const { default: zkService } = (await import('../app/Clock/Service'));
+    const { default: zkService } = (await import('../app/Clock/Service'));
 
-    // try {
-    //   const service = new zkService('192.168.2.251', 4370, 5000, 4370);
-    //   console.log(service.getInfo());
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      const service = new zkService('192.168.2.251', 4370, 5000, 4370);
+      console.log(await service.getInfo());
+      service.getAttendances((percent, total) => {
+        console.log('percent', percent)
+        console.log('total', total)
+      });
+      service.getRealTimeLogs((data) => {
+        console.log(data)
+      });
+      console.log(await service.getTime());
+    } catch (e) {
+      console.log(e);
+    }
+
+    return;
 
     let zkInstance = new ZKLib('192.168.2.251', 4370, 10000, 4000);
     try {
