@@ -195,7 +195,7 @@ export default class TcpProtocol extends Protocol {
 
             try {
                 reply = await this.requestData(buf)
-                console.log('reply', reply.toString())
+                console.log('reply', reply.toString());
             } catch (err) {
                 reject(err)
             }
